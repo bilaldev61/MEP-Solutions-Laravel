@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>We've received your enquiry</title>
+    <title>We've got your enquiry</title>
 </head>
 
 <body style="margin:0; padding:0; background:#eef5f6; font-family: Arial, Helvetica, sans-serif; color:#0a161e;">
@@ -22,7 +22,7 @@
                         <td style="padding:32px;">
                             <h1 style="margin:0 0 12px; font-size:22px;">Thanks for reaching out, {{ $lead->name }}!</h1>
                             <p style="margin:0 0 16px; font-size:15px; line-height:1.6; color:#3f5560;">
-                                {!! nl2br(e($body ?? "We've received your enquiry and our team will contact you shortly. Here's what you sent:")) !!}
+                                {!! nl2br(e($body ?? "Our team is on it — we'll contact you shortly. Here's what you sent:")) !!}
                             </p>
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f8f9; border-radius:12px; font-size:14px;">
                                 <tr>
@@ -43,7 +43,7 @@
                     </tr>
                     <tr>
                         <td style="padding:20px 32px; background:#f4f8f9; font-size:12px; color:#6b7f88;">
-                            This is an automated acknowledgement from {{ $brandName ?? config('app.name', 'MEP Solutions') }}.
+                            This is an automated acknowledgement from BR {{ $brandName ?? config('app.name', 'MEP Solutions') }}.
                         </td>
                     </tr>
                 </table>

@@ -10,7 +10,7 @@ class SiteSettingsSeeder extends Seeder
     public function run(): void
     {
         $settings = [
-            ['key' => 'site_name',      'value' => 'BR MEP Solutions'],
+            ['key' => 'site_name',      'value' => 'MEP Solutions'],
             ['key' => 'phone',          'value' => '+1 (555) 000-0000'],
             ['key' => 'whatsapp',       'value' => '15550000000'],
             ['key' => 'email',          'value' => 'info@brmepsolutions.com'],

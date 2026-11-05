@@ -14,9 +14,9 @@ class LeadAcknowledgement extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public const DEFAULT_SUBJECT = "We've received your enquiry";
+    public const DEFAULT_SUBJECT = "We've got your enquiry, {name}!";
 
-    public const DEFAULT_BODY = "We've received your enquiry and our team will contact you shortly. Here's what you sent:";
+    public const DEFAULT_BODY = "Our team is on it — we'll contact you shortly. Here's what you sent:";
 
     /**
      * Create a new message instance.
