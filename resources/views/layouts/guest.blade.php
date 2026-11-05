@@ -43,7 +43,10 @@
                 </div>
 
                 <p class="mt-6 text-center text-sm text-brand-400">
-                    <a href="{{ route('home') }}" class="font-semibold text-brand-500 transition hover:text-brand-700">← Back to website</a>
+                    @php $isLogin = request()->routeIs('login'); @endphp
+                    <a href="{{ $isLogin ? route('home') : route('login') }}" class="font-semibold text-brand-500 transition hover:text-brand-700">
+                        {{ $isLogin ? '← Back to website' : '← Back to sign in' }}
+                    </a>
                 </p>
             </div>
         </div>

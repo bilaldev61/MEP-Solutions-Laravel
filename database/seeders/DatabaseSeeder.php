@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // Demo admin account (role is not mass assignable — set explicitly)
         $admin = User::updateOrCreate(
-            ['email' => 'test@example.com'],
+            ['email' => 'admin@example.com'],
             ['name' => 'Test User', 'password' => 'password']
         );
         $admin->role = 'admin';

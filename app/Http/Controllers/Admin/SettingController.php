@@ -16,7 +16,20 @@ class SettingController extends Controller
 
     public function update(Request $request)
     {
-        foreach ($request->except('_token') as $key => $value) {
+        // Validate + whitelist: only these keys may ever reach site_settings.
+        $data = $request->validate([
+            'site_name'      => 'required|string|max:100',
+            'phone'          => 'required|string|max:20',
+            'whatsapp'       => 'required|string|max:20|regex:/^\d+$/',
+            'email'          => 'required|email|max:100',
+            'address'        => 'required|string|max:255',
+            'working_hours'  => 'nullable|string|max:100',
+            'hero_title'     => 'required|string|max:150',
+            'hero_subtitle'  => 'nullable|string|max:255',
+            'about_text'     => 'nullable|string|max:2000',
+        ]);
+
+        foreach ($data as $key => $value) {
             SiteSetting::updateOrCreate(
                 ['key' => $key],
                 ['value' => $value]

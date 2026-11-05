@@ -38,12 +38,12 @@
                         <div class="grid gap-5 sm:grid-cols-2">
                             <div>
                                 <label class="field-label">Your Name *</label>
-                                <input type="text" name="name" value="{{ old('name') }}" required class="field-input">
+                                <input type="text" name="name" value="{{ old('name') }}" required maxlength="100" autocomplete="name" class="field-input">
                                 @error('name')<p class="mt-1 text-xs font-medium text-ember-600">{{ $message }}</p>@enderror
                             </div>
                             <div>
                                 <label class="field-label">Phone Number *</label>
-                                <input type="text" name="phone" value="{{ old('phone') }}" required class="field-input">
+                                <input type="tel" name="phone" value="{{ old('phone') }}" required maxlength="20" pattern="[+0-9()\s-]{7,20}" title="Enter a valid phone number (digits, spaces, +, - only)" autocomplete="tel" class="field-input">
                                 @error('phone')<p class="mt-1 text-xs font-medium text-ember-600">{{ $message }}</p>@enderror
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                         <div class="grid gap-5 sm:grid-cols-2">
                             <div>
                                 <label class="field-label">Email Address</label>
-                                <input type="email" name="email" value="{{ old('email') }}" class="field-input">
+                                <input type="email" name="email" value="{{ old('email') }}" maxlength="255" autocomplete="email" class="field-input">
                                 @error('email')<p class="mt-1 text-xs font-medium text-ember-600">{{ $message }}</p>@enderror
                             </div>
                             <div>
@@ -67,7 +67,12 @@
 
                         <div>
                             <label class="field-label">Message</label>
-                            <textarea name="message" rows="4" class="field-input" placeholder="Describe your issue...">{{ old('message') }}</textarea>
+                            <textarea name="message" rows="4" maxlength="1000" class="field-input" placeholder="Describe your issue..."
+                                oninput="document.getElementById('msg-count').textContent = this.value.length">{{ old('message') }}</textarea>
+                            <p class="mt-1 text-xs text-brand-400">
+                                <span id="msg-count">{{ mb_strlen(old('message', '')) }}</span>/1000 characters
+                            </p>
+                            @error('message')<p class="mt-1 text-xs font-medium text-ember-600">{{ $message }}</p>@enderror
                         </div>
 
                         <button type="submit" class="btn-primary w-full text-base">Send Request →</button>

@@ -34,7 +34,7 @@ Covers both the public-facing marketing website and an internal admin system for
 - **Attendance** — mark daily attendance per employee
 - **Payments** — record salary, bonus, and advance payments (USD)
 - Responsive layout with an off-canvas sticky sidebar and mobile card views for wide tables
-- ⚠️ Seeders create demo logins — admin `test@example.com / password`, manager `manager@example.com / password`. Change both before deploying
+- ⚠️ Seeders create demo logins — admin `admin@example.com / password`, manager `manager@example.com / password`. Change both before deploying
 
 ## ⚙️ Tech Stack
 
