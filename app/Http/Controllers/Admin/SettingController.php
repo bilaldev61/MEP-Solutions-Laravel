@@ -27,6 +27,9 @@ class SettingController extends Controller
             'hero_title'     => 'required|string|max:150',
             'hero_subtitle'  => 'nullable|string|max:255',
             'about_text'     => 'nullable|string|max:2000',
+            'auto_reply_enabled' => 'required|boolean',
+            'auto_reply_subject' => 'nullable|string|max:150',
+            'auto_reply_body'    => 'nullable|string|max:1000',
         ]);
 
         foreach ($data as $key => $value) {

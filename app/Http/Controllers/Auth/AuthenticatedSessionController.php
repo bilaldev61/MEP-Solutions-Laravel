@@ -42,6 +42,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        // Land admins straight back at the sign-in screen (with a green notice),
+        // instead of dropping them on the public website homepage.
+        return redirect()->route('login')->with('status', 'You have been logged out.');
     }
 }

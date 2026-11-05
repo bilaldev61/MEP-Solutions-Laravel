@@ -77,6 +77,34 @@
                 @error('about_text')<p class="mt-1 text-xs font-medium text-ember-600">{{ $message }}</p>@enderror
             </div>
 
+            <div>
+                <h3 class="eyebrow mb-4">Lead Auto-Reply Email</h3>
+                <div class="rounded-xl border border-brand-100 bg-brand-50/50 p-4">
+                    <input type="hidden" name="auto_reply_enabled" value="0">
+                    <label class="flex cursor-pointer items-center gap-3">
+                        <input type="checkbox" name="auto_reply_enabled" value="1" class="h-5 w-5 rounded border-brand-300 text-ember-600 focus:ring-ember-500"
+                            @checked(old('auto_reply_enabled', $settings['auto_reply_enabled'] ?? '1' )==='1' )>
+                        <span class="text-sm font-semibold text-brand-800">Send automatic acknowledgement to every lead who provides an email</span>
+                    </label>
+                    @error('auto_reply_enabled')<p class="mt-1 text-xs font-medium text-ember-600">{{ $message }}</p>@enderror
+
+                    <div class="mt-5 space-y-4">
+                        <div>
+                            <label class="field-label" for="auto_reply_subject">Email Subject</label>
+                            <input type="text" id="auto_reply_subject" name="auto_reply_subject" maxlength="150" class="field-input"
+                                value="{{ old('auto_reply_subject', $settings['auto_reply_subject'] ?? \App\Mail\LeadAcknowledgement::DEFAULT_SUBJECT) }}">
+                            @error('auto_reply_subject')<p class="mt-1 text-xs font-medium text-ember-600">{{ $message }}</p>@enderror
+                        </div>
+                        <div>
+                            <label class="field-label" for="auto_reply_body">Message Text</label>
+                            <textarea id="auto_reply_body" name="auto_reply_body" rows="4" maxlength="1000" class="field-input">{{ old('auto_reply_body', $settings['auto_reply_body'] ?? \App\Mail\LeadAcknowledgement::DEFAULT_BODY) }}</textarea>
+                            <p class="mt-1 text-xs text-brand-400">Placeholders: <code class="rounded bg-brand-100 px-1 py-0.5 font-mono">{name}</code> <code class="rounded bg-brand-100 px-1 py-0.5 font-mono">{service}</code> <code class="rounded bg-brand-100 px-1 py-0.5 font-mono">{company}</code> — replaced with each lead's details. Leave blank for the default text.</p>
+                            @error('auto_reply_body')<p class="mt-1 text-xs font-medium text-ember-600">{{ $message }}</p>@enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <button type="submit" class="btn-primary">Save All Settings</button>
         </form>
     </div>

@@ -56,8 +56,9 @@ class WebsiteController extends Controller
 
         $lead = Lead::create($request->only(['name', 'phone', 'email', 'service', 'message']));
 
-        // Automated acknowledgement. Never let a mail hiccup break the submission.
-        if ($lead->email) {
+        // Automated acknowledgement — admin can turn it off in Site Settings.
+        $autoReply = SiteSetting::where('key', 'auto_reply_enabled')->value('value');
+        if ($lead->email && $autoReply !== '0') {
             try {
                 Mail::to($lead->email)->send(new LeadAcknowledgement($lead));
             } catch (\Throwable $e) {
