@@ -111,4 +111,32 @@
     </div>
 </section>
 
+<!-- MAP -->
+<section class="bg-white pb-20 sm:pb-24">
+    <div class="shell">
+        <div class="text-center">
+            <span class="eyebrow">Find us</span>
+            <h2 class="section-title">Our Location</h2>
+            <p class="section-sub">{{ $settings['address'] ?? 'Dubai, UAE' }}</p>
+        </div>
+        <div class="mt-8 overflow-hidden rounded-3xl border border-brand-100 shadow-lift">
+            <iframe
+                title="BR MEP Solutions location map"
+                src="https://www.google.com/maps?q={{ urlencode($settings['address'] ?? 'Dubai, UAE') }}&z=13&output=embed"
+                class="w-full border-0"
+                style="height: 420px;"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($settings['address'] ?? 'Dubai, UAE') }}"
+                target="_blank" rel="noopener"
+                class="btn-primary">Open in Google Maps ↗</a>
+            <a href="https://wa.me/{{ $settings['whatsapp'] ?? '' }}" target="_blank" rel="noopener"
+                class="btn-dark">💬 WhatsApp Us</a>
+        </div>
+    </div>
+</section>
+
 @endsection
