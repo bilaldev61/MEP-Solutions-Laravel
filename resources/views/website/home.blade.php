@@ -79,7 +79,7 @@ return ['bar' => 'from-brand-400 to-brand-600', 'chip' => 'bg-brand-50 text-bran
 </section>
 
 <!-- SERVICES -->
-<section class="section bg-white">
+<section class="section bg-brand-100">
     <div class="shell">
         <div class="mx-auto max-w-2xl text-center">
             <span class="eyebrow">Our Services</span>
@@ -90,16 +90,22 @@ return ['bar' => 'from-brand-400 to-brand-600', 'chip' => 'bg-brand-50 text-bran
         <div class="mt-10 grid gap-7 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3">
             @forelse($services as $service)
             @php $c = $trade($service->name); @endphp
-            <article class="card group overflow-hidden p-0">
-                <div class="h-1.5 w-full bg-gradient-to-r {{ $c['bar'] }}"></div>
-                <div class="p-6">
+            <article class="card group relative overflow-hidden p-0">
+                <!-- Fixed-height stripe container; only the absolutely-positioned
+                     inner bar changes height, so hover never resizes the grid row. -->
+                <div class="relative h-2.5 w-full">
+                    <div class="absolute inset-x-0 bottom-0 h-1.5 bg-gradient-to-r {{ $c['bar'] }} transition-all duration-300 group-hover:h-2.5"></div>
+                </div>
+                <!-- Soft oversized icon watermark -->
+                <span aria-hidden class="pointer-events-none absolute -right-4 -top-5 select-none text-[7rem] leading-none opacity-[0.06] transition-opacity duration-300 group-hover:opacity-[0.12]">{{ $service->icon ?? '🔧' }}</span>
+                <div class="relative p-6">
                     <div class="flex items-center gap-4">
-                        <span class="grid h-14 w-14 place-items-center rounded-2xl text-3xl {{ $c['chip'] }}">{{ $service->icon ?? '🔧' }}</span>
+                        <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl text-3xl {{ $c['chip'] }} shadow-sm transition-transform duration-300 group-hover:scale-105">{{ $service->icon ?? '🔧' }}</span>
                         <h3 class="font-display text-lg font-bold text-brand-900">{{ $service->name }}</h3>
                     </div>
                     <p class="mt-4 text-sm leading-relaxed text-brand-500">{{ $service->description }}</p>
-                    <a href="{{ route('contact') }}" class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-ember-600 transition group-hover:gap-2 hover:text-ember-700">
-                        Request this service →
+                    <a href="{{ route('contact') }}" class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-ember-600 transition-colors hover:text-ember-700">
+                        Request this service <span aria-hidden class="transition-transform duration-300 group-hover:translate-x-1">→</span>
                     </a>
                 </div>
             </article>
@@ -117,7 +123,7 @@ return ['bar' => 'from-brand-400 to-brand-600', 'chip' => 'bg-brand-50 text-bran
 </section>
 
 <!-- WHY CHOOSE US -->
-<section class="section bg-slate-50">
+<section class="section bg-brand-50">
     <div class="shell">
         <div class="mx-auto max-w-2xl text-center">
             <span class="eyebrow">Why BR MEP Solutions</span>

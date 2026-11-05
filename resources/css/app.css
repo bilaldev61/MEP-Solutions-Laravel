@@ -62,8 +62,15 @@
 
     /* Cards */
     .card {
-        @apply rounded-2xl border border-brand-100 bg-white p-6 shadow-card
-               transition-all duration-300 hover:-translate-y-1 hover:shadow-lift;
+        @apply rounded-2xl border border-brand-200/70 bg-white p-6 shadow-card
+               transition-[transform,box-shadow,border-color] duration-300
+               hover:-translate-y-1 hover:shadow-lift;
+    }
+
+    /* Keyboard-only focus halo: :focus-visible never matches a mouse click,
+       so the ring appears only when a card is reached via Tab. */
+    .card:has(:focus-visible) {
+        @apply border-ember-400 ring-2 ring-ember-200;
     }
 
     /* Form fields */
